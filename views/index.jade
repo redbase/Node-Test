@@ -1,0 +1,35 @@
+h1= "Welcome to VI Project"
+
+#app_view
+	#add_post
+		p
+			a#all(href="#") All
+			span  | 
+			a#starred(href="#") Starred
+			span  | 
+			a#unstarred(href="#") UnStarred
+
+
+		form#new_post_form
+			div
+				textarea#post_message(rows="3")
+			div
+				button#submit_post(type="submit") Add Post
+
+	#posts_list
+
+script#post_template(type="text/template")
+	.post
+		.post_message <%= message %>
+		.actions
+			span
+				a#delete_post.post_links(href="#") Delete
+			<% if (starred) { %>
+			span
+				a#star_toggle.post_links(href="#") Unstar
+			<% } else { %>
+			span
+				a#star_toggle.post_links(href="#") Star
+			<% } %>
+			span#date
+				<%= moment(created_at).format("DD MMMM YYYY HH:mm") %>
